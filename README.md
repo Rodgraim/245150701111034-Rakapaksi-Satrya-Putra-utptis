@@ -71,6 +71,6 @@ Ikuti langkah-langkah di bawah ini untuk memulai menjalankan proyek API Lanjut i
    php artisan serve
    ```
    
-> **Testing Dokumentasi Swagger UI:** Buka Browser Anda dan navigasikan menuju > `http://localhost:8000/api/documentation`.
+> **Testing Dokumentasi Swagger UI:** Buka Browser Anda dan navigasikan menuju > `http://localhost:8000/api/documentation`
 
 ---
