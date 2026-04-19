@@ -1,6 +1,6 @@
 # E-Commerce Mock Backend API (Laravel)
 
-Repositori ini memuat *source code* untuk ujian/tugas pembuatan backend e-commerce sederhana berbasis RESTful API menggunakan **Laravel**. Aplikasi ini beroperasi tanpa database relasional melainkan menggunakan **Mock Data berbasis JSON** yang dijamin tetap *persisten* tidak hilang saat server re-start.
+Repositori ini memuat *source code* untuk ujian/tugas pembuatan backend e-commerce sederhana berbasis REST API menggunakan **Laravel**. Aplikasi ini beroperasi tanpa database relasional melainkan menggunakan **Mock Data berbasis JSON**.
 
 Selain itu, seluruh dokumentasi *endpoints* dapat diakses secara dinamis menggunakan antarmuka interaktif **Swagger UI** (`darkaonline/l5-swagger`).
 
