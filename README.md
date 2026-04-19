@@ -1,59 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# E-Commerce Mock Backend API (Laravel)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Repositori ini memuat *source code* untuk ujian/tugas pembuatan backend e-commerce sederhana berbasis RESTful API menggunakan **Laravel**. Aplikasi ini beroperasi tanpa database relasional melainkan menggunakan **Mock Data berbasis JSON** yang dijamin tetap *persisten* tidak hilang saat server re-start.
 
-## About Laravel
+Selain itu, seluruh dokumentasi *endpoints* dapat diakses secara dinamis menggunakan antarmuka interaktif **Swagger UI** (`darkaonline/l5-swagger`).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Fitur Utama
+Sistem ini menggunakan penyimpanan lokal (file system) di mana data item disimpan sementara dalam `storage/app/items.json`.
+Berikut adalah aksi (CRUD) yang didukung di endpoint `api/items`:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Method   | Endpoint          | Keterangan                                       |
+| -------- | ----------------- | ------------------------------------------------ |
+| `GET`    | `/api/items`      | Menampilkan daftar semua barang yang tersedia.   |
+| `POST`   | `/api/items`      | Membuat barang baru (membutuhkan `name` & `price`).|
+| `GET`    | `/api/items/{id}` | Menampilkan detail barang berdasarkan ID.        |
+| `PUT`    | `/api/items/{id}` | Mengubah keseluruhan atribut data sebuah barang.           |
+| `PATCH`  | `/api/items/{id}` | Mengupdate salah satu atribut (misal *harga* saja).|
+| `DELETE` | `/api/items/{id}` | Menghapus barang berdasarkan ID terkait.         |
 
-## Learning Laravel
+> **Catatan Penanganan Error (Error Handling):** 
+> - Input divalidasi dengan request validation API *built-in* dari Laravel.
+> - Pencarian ID barang yang tidak terdaftar akan mengembalikan status code `404` beserta pesan `"Item dengan ID {id} tidak Ditemukan"`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Tech Stack & Konfigurasi
+- **Framework:** Laravel 11/12 (PHP 8.2+)
+- **API Documentation:** [darkaonline/l5-swagger](https://github.com/DarkaOnLine/L5-Swagger) utilizing *PHP 8 OpenApi Attributes*.
+- **Database:** Non-RDBMS (Menggunakan format baca-tulis file `items.json`).
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 💻 Panduan Instalasi (Setup Project)
 
-### Premium Partners
+Ikuti langkah-langkah di bawah ini untuk memulai menjalankan proyek API Lanjut ini di lokal *(localhost)* Anda.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Clone Repositori:**
+   ```bash
+   git clone <link_repository_github_anda>
+   cd <nama_folder_repository>
+   ```
 
-## Contributing
+2. **Instalasi Dependencies Composer:**
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Buat file `.env` Konfigurasi:**  
+   Ambil dari contoh environment Laravel.
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Code of Conduct
+4. **Jalankan Instalator API Routing (Opsional Jika Dibutuhkan):**  
+   Perintah ini akan memastikan kerangka routing `api` bekerja dengan baik jika belum aktif bawaan framework.
+   ```bash
+   php artisan install:api
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Generate Dokumentasi Swagger:**  
+   Pastikan Anda men-generate ulang swagger file setiap kali ada perombakan route di controller.
+   ```bash
+   php artisan l5-swagger:generate
+   ```
 
-## Security Vulnerabilities
+6. **Jalankan Server Lokal (Development):**  
+   ```bash
+   php artisan serve
+   ```
+   
+> **Testing Dokumentasi Swagger UI:** Buka Browser kesayangan Anda dan navigasikan menuju > `http://localhost:8000/api/documentation`. (Semua API *ready untuk ditest UI disana*).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📁 Lisensi & Syarat
+Kode ini merupakan implementasi mandiri (tidak berupa salin rekat dari repository luar secara masif) dan sengaja dipublikasikan untuk memenuhi _Terms & Conditions_ tugas Ujian / UTP Studi Kasus. Code sudah dibersihkan dari *placeholder* standar.
