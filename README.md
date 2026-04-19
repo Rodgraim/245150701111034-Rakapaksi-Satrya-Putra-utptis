@@ -74,6 +74,3 @@ Ikuti langkah-langkah di bawah ini untuk memulai menjalankan proyek API Lanjut i
 > **Testing Dokumentasi Swagger UI:** Buka Browser kesayangan Anda dan navigasikan menuju > `http://localhost:8000/api/documentation`. (Semua API *ready untuk ditest UI disana*).
 
 ---
-
-## 📁 Lisensi & Syarat
-Kode ini merupakan implementasi mandiri (tidak berupa salin rekat dari repository luar secara masif) dan sengaja dipublikasikan untuk memenuhi _Terms & Conditions_ tugas Ujian / UTP Studi Kasus. Code sudah dibersihkan dari *placeholder* standar.
